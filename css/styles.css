@@ -1,0 +1,194 @@
+@charset "UTF-8";
+/* CSS Document */
+
+@font-face {
+    font-family: "glyph";
+    src: url("../fonts/glyphicons-halflings-regular.woff") format('woff');
+}
+.glyphicon {
+	font-family:glyph;
+	position:relative;
+	top:4px;
+}
+a .glyphicon {
+	text-decoration:none;
+	color:inherit;
+}
+a {
+	text-decoration:none;
+	color:black;
+}
+.b-close {
+	font-size:80px; 
+	position:absolute; 
+	right:-12px; top:-14px;
+}
+.link {
+	padding:10px;
+	display:block;
+	}
+html, body {
+	height: 100%;
+	margin: 0;
+	font-family:Tahoma, Geneva, sans-serif;
+	overflow:hidden;
+}
+.wrapper {
+	position:absolute;
+	top:0;
+	left:0;
+	height:1080px;
+	width:1920px;
+}
+.responsiveHeight {
+	position:absolute; top:0; left:0; width:1024px; height:768px; z-index:1;
+}
+.menu1 {
+	left:0;
+}
+.menu2 {
+	left:33%;
+}
+.menu3 {
+	left:66%;
+}
+.nav-bottom {
+	position:absolute;
+	bottom:0;
+	z-index:100;
+}
+.nav-right {
+	position:absolute;
+	right:0;
+	top:490px;
+	z-index:10;
+}
+.home-finder {
+	position:absolute;
+	bottom:0;
+	z-index:10;
+	left:760px;
+}
+.home-finder .menu_but {
+	width:400px;
+	padding:45px;
+	font-size:48px;
+}
+.nav-bottom .menu_but {
+	float:left;
+	padding:40px 30px;
+	font-size:28px;
+}
+.nav-right .menu_but {
+	width:235px;
+	padding:40px;
+	text-align:left;
+}
+.menu_but {
+	display:block;
+	text-align:center;
+	background-color:rgba(255,255,255,.9);
+	margin:0;
+	color:#666;
+	font-size:24pt;
+	transition:all 1s ease;
+	text-decoration:none;
+	border:1px solid #999;
+}
+.cont {
+	background-color:rgba(0,0,0,.5);
+	width:500px;
+	height:500px;
+	color:#FFF;
+	padding:50px;
+	transition:all 2s ease;
+	position:absolute;
+	top:100%;
+}
+.cont:target {
+	top:0;
+}
+.house-info {
+	position:absolute;
+	right:0;
+	text-align:right;
+	z-index:10;
+}
+.house-info .house-name {
+	text-align:right;
+	color:#FFF;
+	font-size:80pt;
+	padding:20px 60px 10px 10px;
+	text-shadow: 2px 2px #666;
+}
+.house-info .house-icons {
+	background-color:rgba(255,255,255,.9);
+	padding:10px 0px 10px 30px;
+	width:300px;
+	position:absolute;
+	right:0;
+}
+.house-info .house-icons .number {
+	font-size:22pt;
+	display:block;
+	float:left;
+	margin-right:5px;
+}
+.house-info .house-icons .icon {
+	display:block;
+	float:left;
+	margin-right:30px;
+}
+.house-info .house-icons .icon.last {
+	margin-right:0;
+}
+.floorplan-div {
+	background-color: rgba(255, 255, 255, 0.9);
+    margin-top: 75px;
+    position: absolute;
+    right: 15px;
+    width: 300px;
+	text-align:center;
+}
+.floorplan-div img {
+	height:200px;
+	padding:25px;
+}
+.clear {
+	clear:both;
+}
+
+/* PROMOTIONS
+------------------------------*/
+
+.promo-wrapper {
+	position:absolute;
+	top:100%;
+	left:0%;
+	z-index:20;
+	background-color:rgba(0,0,0,.5);
+	width:100%;
+	height:100%;
+	transition:all 1s ease;
+}
+.promo-cont {
+	background-color:white;
+	padding:40px;
+	margin:40px;
+	position:relative;
+	background: -moz-linear-gradient(top, #f2f5f6 0%, #e3eaed 37%, #c8d7dc 100%); /* FF3.6+ */
+}
+.promo-wrapper.show {
+	top:0%;
+}
+.promo-cont h1 {
+	font-size:40px;
+	font-weight:normal;
+	padding-bottom:20px;
+	border-bottom:solid 1px #999;
+	margin-bottom:20px;
+	color:#FFF;
+}
+.promo-cont ul li {
+	margin-bottom:15px;
+}
