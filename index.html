@@ -40,9 +40,10 @@ $(function() {
 	var ripple_count = 1;
 	
 	$('.wrapper').tapstart(function(e, touch) {
-		var pos = $(this).position;
-		var x = pos.x;
-		var y = pos.y;
+		//alert(touch.offset);
+		var pos = touch.offset.y;
+		var x = touch.offset.y;
+		var y = touch.offset.y;
 		
 		//alert(e.clientX + ' '  + e.clientY);
 		
