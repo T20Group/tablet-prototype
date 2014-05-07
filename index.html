@@ -40,27 +40,27 @@ $(function() {
 	var ripple_count = 1;
 	
 	$('.wrapper').tapstart(function(e, touch) {
-		//alert(touch.offset);
-		var pos = touch.offset.y;
-		var x = touch.position.y;
-		var y = touch.position.x;
+		placeRipple(this, touch.position);
 		
-		//alert(e.clientX + ' '  + e.clientY);
 		
-		//var t = $('#ripple');
-	
-		// add a ripple div
+		
+		
+	}).tapend(function(e, touch) {
+		placeRipple(this, touch.position);
+		
 		if (ripple_count==max_ripple) {
 			$('.ripple').remove();
 			ripple_count=1;
 		}
 		
-		$(this).append('<div class="ripple" style="top:'+y+'px; left:'+x+'px;"></div>');
-		
 		ripple_count++;
-		
-		
 	});
+	
+	function placeRipple(target, pos) {
+		var x = pos.x;
+		var y = pos.y;
+		$(target).append('<div class="ripple" style="top:'+y+'px; left:'+x+'px;"></div>');
+	}
 	
 });
 
