@@ -57,8 +57,8 @@ $(function() {
 	});
 	
 	function placeRipple(target, pos) {
-		var x = pos.x;
-		var y = pos.y;
+		var x = pos.y;
+		var y = pos.x;
 		$(target).append('<div class="ripple" style="top:'+y+'px; left:'+x+'px;"></div>');
 	}
 	
