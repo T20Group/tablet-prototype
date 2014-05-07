@@ -42,8 +42,8 @@ $(function() {
 	$('.wrapper').tapstart(function(e, touch) {
 		//alert(touch.offset);
 		var pos = touch.offset.y;
-		var x = touch.offset.y;
-		var y = touch.offset.y;
+		var x = touch.position.x;
+		var y = touch.position.y;
 		
 		//alert(e.clientX + ' '  + e.clientY);
 		
