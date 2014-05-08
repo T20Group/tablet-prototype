@@ -39,12 +39,16 @@ $(function() {
 		$(target).append('<div class="ripple" style="top:'+y+'px; left:'+x+'px;"></div>');
 	}
 	
+	var date = new Date();
+	$('#update').text('v: ' + date);
+	
 });
 
 
 </script>
 
 <style type="text/css">
+#update { position: absolute; top: 0; left: 0; z-index: 9999; color: white; font-size: 7pt; }
 #ripple { border-radius:2px; background: white; position: absolute; z-index: 100;}
 
 .ripple,.ripple:before,.ripple:after {
@@ -90,6 +94,7 @@ $(function() {
 
 <body class="wrapper">
 	
+	<div id="update">123</div>
 	
 	<div id="ripple" class="ripple"></div>
 
