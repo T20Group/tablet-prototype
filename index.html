@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>Simonds Homes Tablet</title>
-<meta name = "viewport" content ="width=device-width, minimum-scale=1">
+<meta name = "viewport" content ="width=device-width, minimum-scale=1"> <!-- , maximum-scale=1 -->
 
 <!-- META -->
 <meta charset = "utf-8">
@@ -48,7 +48,7 @@ $(function() {
 </script>
 
 <style type="text/css">
-#update { position: absolute; top: 0; left: 0; z-index: 9999; color: white; font-size: 7pt; }
+#update { position: fixed; top: 0; left: 0; z-index: 9999; color: white; font-size: 7pt; }
 #ripple { border-radius:2px; background: white; position: absolute; z-index: 100;}
 
 .ripple,.ripple:before,.ripple:after {
@@ -99,6 +99,8 @@ $(function() {
 	<div id="ripple" class="ripple"></div>
 
 	<iframe src="iframe.html" height="768" width="1024" scrolling="no"  seamless></iframe>
+	
+	<div id="hud" style="position: fixed; background: red; height: 30px; width: 50px; top: 0; right: 0; z-index: 10000;">hud</div>
 	
 </body>
 
