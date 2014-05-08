@@ -9,7 +9,7 @@ $(function() {
 		var src = "images/facades/" + $(this).attr('data-src');
 		//$('#content-image > img').attr('src', src);
 		$('#content-image').prepend('<img src="'+src+'">');	
-		$('#content-image > img:not(:first)').fadeOut(500, function() {
+		$('#content-image > img:not(:first)').fadeOut(1000, function() {
 			$(this).remove();
 		});
 			
