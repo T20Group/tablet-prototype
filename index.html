@@ -19,7 +19,9 @@
 
 <script type="text/javascript">
 $(function() {
-
+	var max_ripple = 10;
+	var ripple_count = 1;
+	
 	$('.wrapper').tapstart(function(e, touch) {
 		placeRipple(this, touch.position);
 		
@@ -97,8 +99,20 @@ $(function() {
 	<div id="update">123</div>
 	
 	<div id="ripple" class="ripple"></div>
+	
 
-	<iframe src="iframe.html" height="768" width="1024" scrolling="no"  seamless></iframe>
+    <script type="text/javascript">
+    $(function() {
+	   function inc(target, source) {
+	    	$( target ).load( source );	
+    	}
+		inc('#content', 'iframe.html');
+		$( "#content" ).load( "iframe.html" ); 
+    });
+	</script>
+	
+	<div id="content">test</div>
+	
 	
 	<div id="hud" style="position: fixed; background: red; height: 30px; width: 50px; top: 0; right: 0; z-index: 10000;">hud</div>
 	
