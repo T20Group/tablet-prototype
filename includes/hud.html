@@ -4,6 +4,18 @@ $(function() {
 		$(this).prev('.options').slideToggle();
 		$(this).children('.glyphicon').toggleClass('rotate');
 	});
+	
+	$('.facade-op').click(function() {
+		var src = "images/facades/" + $(this).attr('data-src');
+		//$('#content-image > img').attr('src', src);
+		$('#content-image').prepend('<img src="'+src+'">');	
+		$('#content-image > img:not(:first)').fadeOut(500, function() {
+			$(this).remove();
+		});
+			
+		return false;
+	});
+	
 });
 </script>
 
@@ -22,11 +34,11 @@ $(function() {
 #hudBL, #hudBC, #hudBR {  }
 #hudBL {  }
 #hudBR { text-align: right;  }
-#hudBR .glyphicon { font-size: 30px; transform: rotate(45deg); display: inline-block; }
+#hudBR .glyphicon { font-size: 30px; display: inline-block; }
 
 #hudBR a { color: white; }
 	#facade-selector > .options > a { display: block; padding-bottom: 20px;  }
-	.rotate { transform: rotate(-270deg) !important; }
+	.rotate { transform: rotate(-225deg) ; }
 
 
 #hudBC { width: 100%; text-align: center; }
@@ -116,14 +128,13 @@ facades
 	<div id="facade-selector" >
 		
 		<div class="options">
-		<small>Facade Selector</small>
-		<a href="#">LANGRIDGE</a>
-		<a href="#">BECKETT</a>
-		<a href="#">PENFOLD</a>
-		<a href="#">MASON</a>
+		<a class="facade-op" data-src="langridge.jpg" href="#">LANGRIDGE</a>
+		<a class="facade-op" data-src="beckett.jpg" href="#">BECKETT</a>
+		<a class="facade-op" data-src="penfold.jpg" href="#">PENFOLD</a>
+		<a class="facade-op" data-src="mason.jpg" href="#">MASON</a>
 		</div>
 		
-		<a id="btn-facade" href="#">FACADE BUTTON <span class="glyphicon ease">&#57480;</span></a>
+		<a id="btn-facade" href="#">Facade selector <span class="glyphicon ease">&#57480;</span></a>
 		
 	</div>
 
