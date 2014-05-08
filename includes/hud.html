@@ -1,0 +1,84 @@
+<style type="text/css">
+#hudT, #hudBL, #hudBC, #hudBR, #hud-bot-shade { position: absolute; color: white; }
+#hudT { height: 60px; width: 100%;  }
+#hudT > .top-nav { width: 17.8%; float: left; height: 60px; padding: 1%; margin-right: 2px; }
+#hudT > .last { margin: 0; }
+	.top-nav { font-size: 20px; color: rgba( 0, 0, 0, 0.5 ); color: white; position: relative; }
+	.top-nav > .glyphicon, .top-nav > .info, .top-nav > .title  { position: absolute; }
+	.top-nav > .glyphicon { left: 20px; top: 15px; font-size: 32px; }
+	.top-nav > .info { left: 60px; top: 5px }
+	.top-nav > .title { left: 60px; top: 30px; font-weight: 500; }
+
+#hud-bot-shade { width: 100%; height: 60px; bottom: 0; }
+#hudBL, #hudBC, #hudBR {  }
+#hudBL {  }
+#hudBR {  }
+#hudBC { width: 100%; text-align: center; }
+
+.gradientTop { background: -moz-linear-gradient( -90deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) ) ; }
+.gradientBot { background: -moz-linear-gradient( 90deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) ) ; }
+
+.top { top: 2%; }
+.bot { bottom: 2%; }
+.left { left: 2%; }
+.right { right: 2% }
+
+.cubic { transition: all .3s cubic-bezier(.5, 1.8, 1, 1.5); }
+.ease { transition: all .3s ease; }
+.top-nav:hover > .glyphicon { transform:rotate(180deg); }
+
+</style>
+
+<div id="hudT" class="">
+
+	<div id="step_1" class="top-nav gradientTop">
+		<span class="glyphicon ease">&#57481;</span>
+		<span class="info">floorplan</span>
+		<span class="title">NICHOLSON</span>
+	</div>
+	
+	<div id="step_2" class="top-nav gradientTop">
+		<span class="glyphicon ease">&#57481;</span>
+		<span class="info">facade</span>
+		<span class="title">PENFOLD</span>
+	</div>
+	
+	<div id="step_3" class="top-nav gradientTop">
+		<span class="glyphicon ease">&#57481;</span>
+		<span class="info">specifications</span>
+		<span class="title">ELITE</span>
+	</div>
+	
+	<div id="step_4" class="top-nav gradientTop">
+		<span class="glyphicon ease">&#57481;</span>
+		<span class="info">colour</span>
+		<span class="title">__</span>
+	</div>
+	
+	<div id="step_5" class="top-nav gradientTop last">
+		<span class="glyphicon ease">&#57481;</span>
+		<span class="info">complete</span>
+		<span class="title">__</span>
+	</div>
+	
+	<div class="cleared"></div>
+
+</div><!-- /hud-top -->
+
+<div id="hud-bot-shade" class=""></div>
+
+<div id="hudBL" class="bot left">
+<span class="glyphicon">&#57480;</span>
+facades	
+</div><!-- /hud-bot-left -->
+
+<div id="hudBC" class="bot">
+view, share, language, promo
+</div><!-- /hud-bot -->
+
+<div id="hudBR" class="bot right">
+<span class="glyphicon">&#57480;</span>
+control selector
+</div> <!-- /hud-bot-right -->
+
+

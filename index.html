@@ -106,12 +106,14 @@ $(function() {
 	   function inc(target, source) {
 	    	$( target ).load( source );	
     	}
-		inc('#content', 'iframe.html');
-		$( "#content" ).load( "iframe.html" ); 
+		inc('#hud-container', 'includes/hud.html');
+		inc('#content', 'content.html');
     });
 	</script>
 	
-	<div id="content">test</div>
+	<div id="hud-container"   style="z-index: 9000; background: ; position: absolute; height: 768px; width: 1024px; "></div>
+	<div id="content"         style="z-index: 8000;"></div>
+	<div id="promo-container" style="z-index: 7000;"></div>
 	
 	
 	<div id="hud" style="position: fixed; background: red; height: 30px; width: 50px; top: 0; right: 0; z-index: 10000;">hud</div>
