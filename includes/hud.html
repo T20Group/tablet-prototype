@@ -1,3 +1,12 @@
+<script type="text/javascript">
+$(function() {
+	$('#btn-facade').click(function() {
+		$(this).prev('.options').slideToggle();
+		$(this).children('.glyphicon').toggleClass('rotate');
+	});
+});
+</script>
+
 <style type="text/css">
 #hudT, #hudBL, #hudBC, #hudBR, #hud-bot-shade { position: absolute; color: white; }
 #hudT { height: 60px; width: 100%;  }
@@ -12,7 +21,13 @@
 #hud-bot-shade { width: 100%; height: 60px; bottom: 0; }
 #hudBL, #hudBC, #hudBR {  }
 #hudBL {  }
-#hudBR {  }
+#hudBR { text-align: right;  }
+#hudBR .glyphicon { font-size: 30px; transform: rotate(45deg); display: inline-block; }
+
+#hudBR a { color: white; }
+	#facade-selector > .options > a { display: block; padding-bottom: 20px;  }
+	.rotate { transform: rotate(-270deg) !important; }
+
 
 #hudBC { width: 100%; text-align: center; }
 #hudBC > .menu { display: inline-block; color: white; font-size: 10px; width: 70px;  overflow: hidden; }
@@ -98,8 +113,20 @@ facades
 </div><!-- /hud-bot -->
 
 <div id="hudBR" class="bot right">
-<span class="glyphicon">&#57480;</span>
-control selector
+	<div id="facade-selector" >
+		
+		<div class="options">
+		<small>Facade Selector</small>
+		<a href="#">LANGRIDGE</a>
+		<a href="#">BECKETT</a>
+		<a href="#">PENFOLD</a>
+		<a href="#">MASON</a>
+		</div>
+		
+		<a id="btn-facade" href="#">FACADE BUTTON <span class="glyphicon ease">&#57480;</span></a>
+		
+	</div>
+
 </div> <!-- /hud-bot-right -->
 
 
