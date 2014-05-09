@@ -1,11 +1,11 @@
 <script type="text/javascript">
 $(function() {
-	$('#btn-facade').click(function() {
+	$('#btn-facade').tapstart(function(e, touch) {
 		$(this).prev('.options').slideToggle();
 		$(this).children('.glyphicon').toggleClass('rotate');
 	});
 	
-	$('.facade-op').click(function() {
+	$('.facade-op').tapstart(function(e, touch) {
 		var src = "images/facades/" + $(this).attr('data-src');
 		
 		// change facades
@@ -14,10 +14,9 @@ $(function() {
 			$(this).remove();
 		});
 		
-		
 		// update facade title
 		var title = $(this).attr('title');
-		updateFacade(title);
+		updateFacade(title, src);
 		
 		return false;
 	});
@@ -26,7 +25,7 @@ $(function() {
 		$('#step_2 > .title').text(val);
 	}
 	
-	$('.top-nav').click(function() {
+	$('.top-nav').tapstart(function(e, touch) {
 		if ($(this).hasClass('lock')) {
 		 return false;
 		} else {
@@ -34,6 +33,16 @@ $(function() {
 			$(this).next('.top-nav').removeClass('lock').addClass('unlock');
 		};
 	});
+	
+	$('#btn-floorplan, #btn-floorplan-close').tapstart(function(e, touch) {
+		hideHUD();
+		$('#btn-floorplan-close, #content-floorplan, #btn-floorplan').toggleClass('fade');
+
+	});
+
+	function hideHUD() {
+		$('#hudT, #hudBC, #hudBR').toggleClass('hidden');
+	}
 	
 });
 </script>
@@ -74,8 +83,9 @@ $(function() {
 	
 #hud-bot-shade { width: 100%; height: 60px; bottom: 0; }
 #hudBL, #hudBC, #hudBR {  }
-#hudBL {  }
-#hudBR { text-align: right;  }
+#hudBL { z-index: 200; }
+	
+#hudBR { text-align: right; z-index: 200; }
 #hudBR .glyphicon { font-size: 30px; display: inline-block; }
 
 #hudBR a { color: white; }
@@ -83,7 +93,7 @@ $(function() {
 	.rotate { transform: rotate(-225deg) ; }
 
 
-#hudBC { width: 100%; text-align: center; }
+#hudBC { width: 100%; text-align: center; z-index: 100; }
 #hudBC > .menu { display: inline-block; color: white; font-size: 10px; width: 70px;  overflow: hidden; }
 #hudBC > .menu > .glyphicon { display: block; font-size: 20px; padding-bottom: 15px; }
 
@@ -91,15 +101,15 @@ $(function() {
 .gradientBot { background: -moz-linear-gradient( 90deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) ) ; }
 
 .top { top: 2%; }
-.bot { bottom: 2%; }
-.left { left: 2%; }
-.right { right: 2% }
+.bot { bottom: 4%; }
+.left { left: 3%; }
+.right { right: 3% }
 
 .cubic { transition: all .3s cubic-bezier(.5, 1.8, 1, 1.5); }
 .ease { transition: all .3s ease; }
 /* .top-nav:hover > .glyphicon { transform:rotate(180deg); } */
 
-
+.close-btn > .glyphicon { color: white; font-size: 30px; }
 
 
 </style>
@@ -145,9 +155,13 @@ $(function() {
 
 <div id="hud-bot-shade" class="gradientBot"></div>
 
-<div id="hudBL" class="bot left">
-<span class="glyphicon">&#57480;</span>
-facades	
+<div id="hudBL" class="bot left" >
+	<a id="btn-floorplan" href="#" >
+		<img src="images/floorplan/plan_mini.png" height="280" />
+	</a>
+	<a id="btn-floorplan-close" class="close-btn ease fade" href="#" style="position: absolute; left: 0; bottom: 0; ">
+		<span class="glyphicon unlock ease">&#57480;</span> 
+	</a>
 </div><!-- /hud-bot-left -->
 
 <div id="hudBC" class="bot">	
