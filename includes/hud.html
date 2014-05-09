@@ -5,7 +5,23 @@ $(function() {
 		$(this).children('.glyphicon').toggleClass('rotate');
 	});
 	
+	// STEP 2 FACADES
+	$('#step_2').tapstart(function(e, touch) {
+		if ($(this).hasClass('lock')) {
+		 return false;
+		} else {
+			$('.selector').addClass('fade');
+			$('#facade-selector').removeClass('fade');
+
+		};
+	});
+	
 	$('.facade-op').tapstart(function(e, touch) {
+		
+		// selected
+		$('.facade-op').removeClass('selected');
+		$(this).addClass('selected');
+		
 		var src = "images/facades/" + $(this).attr('data-src');
 		
 		// change facades
@@ -18,6 +34,9 @@ $(function() {
 		var title = $(this).attr('title');
 		updateFacade(title, src);
 		
+		//unlock step3
+		unlock_step('#step_3');
+		
 		return false;
 	});
 	
@@ -26,22 +45,110 @@ $(function() {
 	}
 	
 	$('.top-nav').tapstart(function(e, touch) {
+		/*
+		if ($(this).hasClass('lock')) {
+				 return false;
+				} else {
+					$(this).children('.touchme').remove();
+					$(this).next('.top-nav').removeClass('lock').addClass('unlock');
+				};
+		*/
+	});
+	
+	
+	// STEP 3 SPECIFICATIONS
+	$('#step_3').tapstart(function(e, touch) {
 		if ($(this).hasClass('lock')) {
 		 return false;
 		} else {
+			$('.selector').addClass('fade');
+			$('#spec-selector').removeClass('fade');
 			$(this).children('.touchme').remove();
-			$(this).next('.top-nav').removeClass('lock').addClass('unlock');
+
 		};
 	});
+	
+	$('.spec-op').tapstart(function(e, touch) {
+		
+		// selected
+		$('.spec-op').removeClass('selected');
+		$(this).addClass('selected');
+		
+		$('.selector').addClass('fade');
+		$('#color-selector').removeClass('fade');
+		
+		// update facade title
+		var title = $(this).attr('title');
+		$('#step_3 > .title').text(title);
+		
+		//unlock step4
+		unlock_step('#step_4');
+		
+		return false;
+	});
+	
+	// STEP 4 COLOUR
+	$('#step_4').tapstart(function(e, touch) {
+		if ($(this).hasClass('lock')) {
+		 return false;
+		} else {
+			$('.selector').addClass('fade');
+			$('#color-selector').removeClass('fade');
+		};
+	});
+	
+	$('.col-op').tapstart(function(e, touch) {
+		
+		var src = "images/color/" + $(this).attr('data-color') + "/living.jpg";
+		
+		// change facades
+		$('#content-image').prepend('<img src="'+src+'">');	
+		$('#content-image > img:not(:first)').fadeOut(1000, function() {
+			$(this).remove();
+		});
+		
+		// selected
+		$('.col-op').removeClass('selected');
+		$(this).addClass('selected');
+		
+		$('.selector').addClass('fade');
+		$('#color-selector').removeClass('fade');
+		
+		// update facade title
+		var title = $(this).attr('title');
+		$('#step_4 > .title').text(title);
+		
+		//unlock step4
+		unlock_step('#step_5');
+		
+		return false;
+	});
+	
+	
+	
+	
+	
+	// MISC 
 	
 	$('#btn-floorplan, #btn-floorplan-close').tapstart(function(e, touch) {
 		hideHUD();
 		$('#btn-floorplan-close, #content-floorplan, #btn-floorplan').toggleClass('fade');
 
 	});
+	
 
 	function hideHUD() {
 		$('#hudT, #hudBC, #hudBR').toggleClass('hidden');
+	}
+	
+	
+	function unlock_step(step) {
+		$(step).removeClass('lock').addClass('unlock');
+		$(step).prev('.top-nav').children('.touchme').remove();
+	}
+	
+	function show_selector() { 
+		
 	}
 	
 });
@@ -89,9 +196,9 @@ $(function() {
 #hudBR .glyphicon { font-size: 30px; display: inline-block; }
 
 #hudBR a { color: white; }
-	#facade-selector > .options > a { display: block; padding-bottom: 20px;  }
+	#facade-selector > .options > a, #spec-selector > .options > a, #color-selector > .options > a { display: block; padding-bottom: 20px; opacity: .5; text-shadow: 0px 0px 3px rgba( 0, 0, 0, 1); background: rgba( 0, 0, 0, 0.0 ); padding: 10px; }
 	.rotate { transform: rotate(-225deg) ; }
-
+	.options > .selected { opacity: 1 !important; }
 
 #hudBC { width: 100%; text-align: center; z-index: 100; }
 #hudBC > .menu { display: inline-block; color: white; font-size: 10px; width: 70px;  overflow: hidden; }
@@ -111,7 +218,6 @@ $(function() {
 
 .close-btn > .glyphicon { color: white; font-size: 30px; }
 
-
 </style>
 
 <div id="hudT" class="">
@@ -126,7 +232,6 @@ $(function() {
 		<span class="glyphicon check ease">&#57481;</span>
 		<span class="info">FACADE</span>
 		<span class="title">PENFOLD</span>
-		<div id="touchme" class="glyphicon touchme">&#57641;</div>
 	</a>
 	
 	<a id="step_3" class="top-nav lock gradientTop" href="#">
@@ -147,6 +252,7 @@ $(function() {
 		<span class="glyphicon check ease">&#57481;</span>
 		<span class="info">COMPLETE</span>
 		<span class="title">__</span>
+		<div id="touchme" class="glyphicon touchme">&#57641;</div>
 	</a>
 	
 	<div class="cleared"></div>
@@ -187,17 +293,36 @@ $(function() {
 </div><!-- /hud-bot -->
 
 <div id="hudBR" class="bot right">
-	<div id="facade-selector" >
+	<div id="facade-selector" class="selector">
 		
 		<div class="options">
-		<a class="facade-op" title="LANGRIDGE" data-src="langridge.jpg" href="#">Langridge</a>
-		<a class="facade-op" title="BECKETT" data-src="beckett.jpg" href="#">Beckett</a>
-		<a class="facade-op" title="PENFOLD" data-src="penfold.jpg" href="#">Penfold</a>
-		<a class="facade-op" title="MASON" data-src="mason.jpg" href="#">Mason</a>
+		<a class="facade-op" title="LANGRIDGE" data-src="langridge.jpg" href="#">Langridge <span class="glyphicon">&#57377;</span></a>
+		<a class="facade-op" title="BECKETT" data-src="beckett.jpg" href="#">Beckett <span class="glyphicon">&#57377;</span></a>
+		<a class="facade-op selected" title="PENFOLD" data-src="penfold.jpg" href="#">Penfold <span class="glyphicon">&#57377;</span></a>
+		<a class="facade-op" title="MASON" data-src="mason.jpg" href="#">Mason <span class="glyphicon">&#57377;</span></a>
 		</div>
 		
-		<a id="btn-facade" href="#">Facade selector <span class="glyphicon unlock ease">&#57480;</span></a>
+<!-- 		<a id="btn-facade" href="#">Facade selector <span class="glyphicon unlock ease">&#57480;</span></a> -->
 		
+	</div>
+	
+	<div id="spec-selector" class="selector fade">
+		<div class="options">
+		<a class="spec-op" title="CLASSIC" href="#">Classic <span class="glyphicon">&#57377;</span></a>
+		<a class="spec-op" title="PREMIUM" href="#">Premium <span class="glyphicon">&#57377;</span></a>
+		<a class="spec-op selected" title="ELITE" href="#">Elite <span class="glyphicon">&#57377;</span></a>
+		</div>
+	</div>
+	
+	<div id="color-selector" class="selector gradientBot fade">
+		<div class="options">
+		<a class="col-op selected"  title="COMO" 		  data-color="como"			href="#">Como <span class="glyphicon">&#57377;</span></a>
+		<a class="col-op" 			title="TAN" 		  data-color="tan"			href="#">Tan <span class="glyphicon">&#57377;</span></a>
+		<a class="col-op"			title="HAWKESBURN"    data-color="hawkesburn" 	href="#">Hawkesburn <span class="glyphicon">&#57377;</span></a>
+		<a class="col-op"			title="KOOYONG" 	  data-color="kooyong"		href="#">Kooyong <span class="glyphicon">&#57377;</span></a>
+		<a class="col-op"			title="GREYTHORN" 	  data-color="greythorn"	href="#">Greythorn <span class="glyphicon">&#57377;</span></a>
+		<a class="col-op"			title="LONSDALE" 	  data-color="lonsdale" 	href="#">Lonsdale <span class="glyphicon">&#57377;</span></a>
+		</div>
 	</div>
 
 </div> <!-- /hud-bot-right -->
