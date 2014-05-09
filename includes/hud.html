@@ -39,18 +39,20 @@ $(function() {
 	.top-nav > .check { left: 20px; top: 15px; font-size: 32px; }
 	.top-nav > .info { left: 60px; top: 10px; font-size: 12pt; font-weight: 100; }
 	.top-nav > .title { left: 60px; top: 30px; font-weight: 500; }
-	.top-nav > .touchme { top: 50px; left: 100px; font-size: 30px; -moz-animation: bounce 2s infinite; border-radius:20px; }
+	.top-nav > .touchme { top: 60px; left: 130px; font-size: 30px; transform: rotate(-45deg); -moz-animation: bounce 1.8s infinite; border-radius:2px; height:1px; width: 1px; opacity: 0.3; }
 	
 	@-moz-keyframes bounce {
-	0% { top: 50px; }
-	10% { top: 40px; }
+	0% { top: 60px; }
+	10% { top: 50px; }
 	20% { 
-		top: 45px; 
+		top: 60px; left: 110px; 
 		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.01),
-                    0 0 10px 0 rgba(255,255,255,0.2); }
-	30% { top: 40px; }
+                    0 0 10px 0 rgba(255,255,255,0.2); 
+        opacity: 1;
+		}
+	30% { top: 50px; }
 	100% { 
-		top: 50px; 
+		top: 70px; 
 		box-shadow: 0 0 10px 30px transparent,
          	        0 0 1px 70px transparent;}
 	}
@@ -82,7 +84,7 @@ $(function() {
 
 .cubic { transition: all .3s cubic-bezier(.5, 1.8, 1, 1.5); }
 .ease { transition: all .3s ease; }
-.top-nav:hover > .glyphicon { transform:rotate(180deg); }
+/* .top-nav:hover > .glyphicon { transform:rotate(180deg); } */
 
 
 
@@ -107,7 +109,7 @@ $(function() {
 		<span class="glyphicon check ease">&#57481;</span>
 		<span class="info">SPECIFICATIONS</span>
 		<span class="title">__</span>
-		<span class="glyphicon touchme cubic">&#57641;</span>
+		<span class="glyphicon touchme">&#57641;</span>
 	</div>
 	
 	<div id="step_4" class="top-nav lock gradientTop">
