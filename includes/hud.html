@@ -7,14 +7,24 @@ $(function() {
 	
 	$('.facade-op').click(function() {
 		var src = "images/facades/" + $(this).attr('data-src');
-		//$('#content-image > img').attr('src', src);
+		
+		// change facades
 		$('#content-image').prepend('<img src="'+src+'">');	
 		$('#content-image > img:not(:first)').fadeOut(1000, function() {
 			$(this).remove();
 		});
-			
+		
+		
+		// update facade title
+		var title = $(this).attr('title');
+		updateFacade(title);
+		
 		return false;
 	});
+	
+	function updateFacade(val) {
+		$('#step_2 > .title').text(val);
+	}
 	
 });
 </script>
@@ -25,11 +35,28 @@ $(function() {
 #hudT > .top-nav { width: 17.8%; float: left; height: 40px; padding: 1%; margin-right: 2px; }
 #hudT > .last { margin: 0; }
 	.top-nav { font-size: 20px; color: rgba( 0, 0, 0, 0.5 ); color: white; position: relative; }
-	.top-nav > .glyphicon, .top-nav > .info, .top-nav > .title  { position: absolute; }
-	.top-nav > .glyphicon { left: 20px; top: 15px; font-size: 32px; }
+	.top-nav > .glyphicon, .top-nav > .info, .top-nav > .title, .top-nav > .check { position: absolute; }
+	.top-nav > .check { left: 20px; top: 15px; font-size: 32px; }
 	.top-nav > .info { left: 60px; top: 10px; font-size: 12pt; font-weight: 100; }
 	.top-nav > .title { left: 60px; top: 30px; font-weight: 500; }
-
+	.top-nav > .touchme { top: 50px; left: 100px; font-size: 30px; -moz-animation: bounce 2s infinite; border-radius:20px; }
+	
+	@-moz-keyframes bounce {
+	0% { top: 50px; }
+	10% { top: 40px; }
+	20% { 
+		top: 45px; 
+		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.01),
+                    0 0 10px 0 rgba(255,255,255,0.2); }
+	30% { top: 40px; }
+	100% { 
+		top: 50px; 
+		box-shadow: 0 0 10px 30px transparent,
+         	        0 0 1px 70px transparent;}
+	}
+		
+	.lock { opacity: .3; }
+	
 #hud-bot-shade { width: 100%; height: 60px; bottom: 0; }
 #hudBL, #hudBC, #hudBR {  }
 #hudBL {  }
@@ -57,36 +84,40 @@ $(function() {
 .ease { transition: all .3s ease; }
 .top-nav:hover > .glyphicon { transform:rotate(180deg); }
 
+
+
+
 </style>
 
 <div id="hudT" class="">
 
-	<div id="step_1" class="top-nav gradientTop">
-		<span class="glyphicon ease">&#57481;</span>
+	<div id="step_1" class="top-nav unlock gradientTop">
+		<span class="glyphicon check ease">&#57481;</span>
 		<span class="info">FLOORPLAN</span>
 		<span class="title">NICHOLSON</span>
 	</div>
 	
-	<div id="step_2" class="top-nav gradientTop">
-		<span class="glyphicon ease">&#57481;</span>
+	<div id="step_2" class="top-nav unlock gradientTop">
+		<span class="glyphicon check ease">&#57481;</span>
 		<span class="info">FACADE</span>
 		<span class="title">PENFOLD</span>
 	</div>
 	
-	<div id="step_3" class="top-nav gradientTop">
-		<span class="glyphicon ease">&#57481;</span>
+	<div id="step_3" class="top-nav unlock gradientTop">
+		<span class="glyphicon check ease">&#57481;</span>
 		<span class="info">SPECIFICATIONS</span>
-		<span class="title">ELITE</span>
+		<span class="title">__</span>
+		<span class="glyphicon touchme cubic">&#57641;</span>
 	</div>
 	
-	<div id="step_4" class="top-nav gradientTop">
-		<span class="glyphicon ease">&#57481;</span>
+	<div id="step_4" class="top-nav lock gradientTop">
+		<span class="glyphicon check ease">&#57481;</span>
 		<span class="info">COLOUR</span>
 		<span class="title">__</span>
 	</div>
 	
-	<div id="step_5" class="top-nav gradientTop last">
-		<span class="glyphicon ease">&#57481;</span>
+	<div id="step_5" class="top-nav lock gradientTop last">
+		<span class="glyphicon check ease">&#57481;</span>
 		<span class="info">COMPLETE</span>
 		<span class="title">__</span>
 	</div>
@@ -128,13 +159,13 @@ facades
 	<div id="facade-selector" >
 		
 		<div class="options">
-		<a class="facade-op" data-src="langridge.jpg" href="#">LANGRIDGE</a>
-		<a class="facade-op" data-src="beckett.jpg" href="#">BECKETT</a>
-		<a class="facade-op" data-src="penfold.jpg" href="#">PENFOLD</a>
-		<a class="facade-op" data-src="mason.jpg" href="#">MASON</a>
+		<a class="facade-op" title="LANGRIDGE" data-src="langridge.jpg" href="#">Langridge</a>
+		<a class="facade-op" title="BECKETT" data-src="beckett.jpg" href="#">Beckett</a>
+		<a class="facade-op" title="PENFOLD" data-src="penfold.jpg" href="#">Penfold</a>
+		<a class="facade-op" title="MASON" data-src="mason.jpg" href="#">Mason</a>
 		</div>
 		
-		<a id="btn-facade" href="#">Facade selector <span class="glyphicon ease">&#57480;</span></a>
+		<a id="btn-facade" href="#">Facade selector <span class="glyphicon unlock ease">&#57480;</span></a>
 		
 	</div>
 
