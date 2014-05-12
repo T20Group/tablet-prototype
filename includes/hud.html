@@ -1,5 +1,6 @@
 <script type="text/javascript">
 $(function() {
+	
 	$('#btn-facade').tapstart(function(e, touch) {
 		$(this).prev('.options').slideToggle();
 		$(this).children('.glyphicon').toggleClass('rotate');
@@ -37,6 +38,12 @@ $(function() {
 		//unlock step3
 		unlock_step('#step_3');
 		
+		$('.facade-op').slideDown();
+		$('#spec-selector, #color-selector').slideUp();
+		$('#step_two_select').slideDown();
+
+		
+		
 		return false;
 	});
 	
@@ -44,15 +51,16 @@ $(function() {
 		$('#step_2 > .title').text(val);
 	}
 	
-	$('.top-nav').tapstart(function(e, touch) {
-		/*
-		if ($(this).hasClass('lock')) {
-				 return false;
-				} else {
-					$(this).children('.touchme').remove();
-					$(this).next('.top-nav').removeClass('lock').addClass('unlock');
-				};
-		*/
+	
+	$('#step_two_select').click(function() {
+		// hide options
+		$(this).slideUp();
+		
+		$('#step_three_select, .spec-op').show();
+		$('.facade-op:not(.selected)').slideUp();
+		$('#spec-selector').slideDown();
+		
+
 	});
 	
 	
@@ -74,18 +82,31 @@ $(function() {
 		$('.spec-op').removeClass('selected');
 		$(this).addClass('selected');
 		
-		$('.selector').addClass('fade');
-		$('#color-selector').removeClass('fade');
-		
 		// update facade title
 		var title = $(this).attr('title');
 		$('#step_3 > .title').text(title);
 		
-		//unlock step4
-		unlock_step('#step_4');
+		
+		$('.spec-op').slideDown(); //  show all spec
+		// hide all other spec
+		//$('.options a:not(.spec-op, .selected)').slideUp();
+		$('#color-selector').slideUp();
+		$('#step_three_select').slideDown();
 		
 		return false;
 	});
+	
+	
+	$('#step_three_select').click(function() {
+		// hide options
+		$(this).slideToggle();
+		$('.spec-op:not(.selected)').slideToggle();
+		$('#color-selector').slideToggle();
+	});
+	
+	
+	
+	
 	
 	// STEP 4 COLOUR
 	$('#step_4').tapstart(function(e, touch) {
@@ -111,8 +132,10 @@ $(function() {
 		$('.col-op').removeClass('selected');
 		$(this).addClass('selected');
 		
+/*
 		$('.selector').addClass('fade');
 		$('#color-selector').removeClass('fade');
+*/
 		
 		// update facade title
 		var title = $(this).attr('title');
@@ -150,6 +173,7 @@ $(function() {
 	function show_selector() { 
 		
 	}
+	
 	
 });
 </script>
@@ -193,12 +217,18 @@ $(function() {
 #hudBL { z-index: 200; }
 	
 #hudBR { text-align: right; z-index: 200; }
-#hudBR .glyphicon { font-size: 30px; display: inline-block; }
+#hudBR .glyphicon { font-size: 20px; display: inline-block; }
 
 #hudBR a { color: white; }
 	#facade-selector > .options > a, #spec-selector > .options > a, #color-selector > .options > a { display: block; padding-bottom: 20px; opacity: .5; text-shadow: 0px 0px 3px rgba( 0, 0, 0, 1); background: rgba( 0, 0, 0, 0.0 ); padding: 10px; }
 	.rotate { transform: rotate(-225deg) ; }
 	.options > .selected { opacity: 1 !important; }
+
+#hudBR .opinfo { padding: 5px 15px; }
+#hudBR .opinfo .desc { display: block; font-size: 10pt; margin-bottom: 0; opacity: .5; }
+
+#hudBR .selector { margin-bottom: 5px; }
+	.button { background: rgba( 0, 0, 0, 0.5); padding: 15px; display: block; width: 150px; }
 
 #hudBC { width: 100%; text-align: center; z-index: 100; }
 #hudBC > .menu { display: inline-block; color: white; font-size: 10px; width: 70px;  overflow: hidden; }
@@ -210,7 +240,7 @@ $(function() {
 .top { top: 2%; }
 .bot { bottom: 4%; }
 .left { left: 3%; }
-.right { right: 3% }
+.right { right: 0; }
 
 .cubic { transition: all .3s cubic-bezier(.5, 1.8, 1, 1.5); }
 .ease { transition: all .3s ease; }
@@ -295,27 +325,49 @@ $(function() {
 <div id="hudBR" class="bot right">
 	<div id="facade-selector" class="selector">
 		
-		<div class="options">
+		<div class="opinfo button">
+		<span class="desc">facade selector</span>
+		</div>
+		
+		<div class="options gradientTop">
 		<a class="facade-op" title="LANGRIDGE" data-src="langridge.jpg" href="#">Langridge <span class="glyphicon">&#57377;</span></a>
 		<a class="facade-op" title="BECKETT" data-src="beckett.jpg" href="#">Beckett <span class="glyphicon">&#57377;</span></a>
 		<a class="facade-op selected" title="PENFOLD" data-src="penfold.jpg" href="#">Penfold <span class="glyphicon">&#57377;</span></a>
 		<a class="facade-op" title="MASON" data-src="mason.jpg" href="#">Mason <span class="glyphicon">&#57377;</span></a>
 		</div>
 		
+		<a href="#" id="step_two_select" class="button">
+		next <span class="glyphicon" >&#57472;</span>
+		</a>
+		
 <!-- 		<a id="btn-facade" href="#">Facade selector <span class="glyphicon unlock ease">&#57480;</span></a> -->
 		
 	</div>
 	
-	<div id="spec-selector" class="selector fade">
-		<div class="options">
+	<div id="spec-selector" class="selector" style="display: none;">
+		
+		<div class="opinfo button">
+		<span class="desc">specifications selector</span>
+		</div>
+		
+		<div class="options gradientTop">
 		<a class="spec-op" title="CLASSIC" href="#">Classic <span class="glyphicon">&#57377;</span></a>
 		<a class="spec-op" title="PREMIUM" href="#">Premium <span class="glyphicon">&#57377;</span></a>
 		<a class="spec-op selected" title="ELITE" href="#">Elite <span class="glyphicon">&#57377;</span></a>
 		</div>
+		
+		<a href="#" id="step_three_select" class="button">
+		next <span class="glyphicon" >&#57472;</span>
+		</a>
 	</div>
 	
-	<div id="color-selector" class="selector gradientBot fade">
-		<div class="options">
+	<div id="color-selector" class="selector" style="display: none;">
+		
+		<div class="opinfo button">
+		<span class="desc">colour selector</span>
+		</div>
+		
+		<div class="options gradientTop">
 		<a class="col-op selected"  title="COMO" 		  data-color="como"			href="#">Como <span class="glyphicon">&#57377;</span></a>
 		<a class="col-op" 			title="TAN" 		  data-color="tan"			href="#">Tan <span class="glyphicon">&#57377;</span></a>
 		<a class="col-op"			title="HAWKESBURN"    data-color="hawkesburn" 	href="#">Hawkesburn <span class="glyphicon">&#57377;</span></a>
@@ -323,6 +375,11 @@ $(function() {
 		<a class="col-op"			title="GREYTHORN" 	  data-color="greythorn"	href="#">Greythorn <span class="glyphicon">&#57377;</span></a>
 		<a class="col-op"			title="LONSDALE" 	  data-color="lonsdale" 	href="#">Lonsdale <span class="glyphicon">&#57377;</span></a>
 		</div>
+		
+		<a href="#" id="step_four_select" class="button">
+		next <span class="glyphicon" >&#57472;</span>
+		</a>
+		
 	</div>
 
 </div> <!-- /hud-bot-right -->
