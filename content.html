@@ -11,6 +11,38 @@ $(function() {
 
 	});
 	
+	
+	// FLOORPLAN FUNCTIONS
+	
+	$('.floorplan-tag').click(function() {
+		
+		var src = $(this).attr('data-view');
+		
+		// set view
+		$('#update').text(src);
+		//alert(src);
+		
+		// hide floorplan
+		$('#hudT, #hudBC, #hudBR').toggleClass('fade');
+		$('#btn-floorplan-close, #content-floorplan, #btn-floorplan').toggleClass('fade');
+		
+		// show background
+		
+		changeView(src);
+		
+	});
+	
+	function changeView(view) {
+		var color = $('#color-selector > .options > .selected').attr('data-color');;
+		
+		var src = "images/color/" + color + "/"+view+".jpg";
+		
+		$('#content-image').prepend('<img src="'+src+'">');	
+		$('#content-image > img:not(:first)').fadeOut(1000, function() {
+			$(this).remove();
+		});	
+	}
+	
 });
 </script>
 
