@@ -192,7 +192,7 @@ $(function() {
 	}
 	
 	function hideHUD() {
-		$('#hudT, #hudBC, #hudBR').toggleClass('hidden');
+		$('#hudT, #hudBC, #hudBR').toggleClass('fade');
 	}
 	
 	
@@ -277,8 +277,6 @@ $(function() {
 .ease { transition: all .3s ease; }
 /* .top-nav:hover > .glyphicon { transform:rotate(180deg); } */
 
-.close-btn > .glyphicon { color: white; font-size: 30px; }
-
 </style>
 
 <div id="hudT" class="">
@@ -323,9 +321,6 @@ $(function() {
 <div id="hudBL" class="bot left" >
 	<a id="btn-floorplan" href="#" >
 		<img src="images/floorplan/plan_mini.png" height="280" />
-	</a>
-	<a id="btn-floorplan-close" class="close-btn ease fade" href="#" style="position: absolute; left: 0; bottom: 0; ">
-		<span class="glyphicon unlock ease">&#57480;</span> 
 	</a>
 </div><!-- /hud-bot-left -->
 
