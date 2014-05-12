@@ -7,15 +7,16 @@ $(function() {
 	});
 	
 	// STEP 2 FACADES
+/*
 	$('#step_2').tapstart(function(e, touch) {
 		if ($(this).hasClass('lock')) {
 		 return false;
 		} else {
-			$('.selector').addClass('fade');
-			$('#facade-selector').removeClass('fade');
-
+			show_step_three();
+			unlock_step('#step_3');
 		};
 	});
+*/
 	
 	$('.facade-op').tapstart(function(e, touch) {
 		
@@ -35,9 +36,6 @@ $(function() {
 		var title = $(this).attr('title');
 		updateFacade(title, src);
 		
-		//unlock step3
-		unlock_step('#step_3');
-		
 		$('.facade-op').slideDown();
 		$('#spec-selector, #color-selector').slideUp();
 		$('#step_two_select').slideDown();
@@ -46,35 +44,35 @@ $(function() {
 		
 		return false;
 	});
-	
-	function updateFacade(val) {
-		$('#step_2 > .title').text(val);
-	}
-	
-	
-	$('#step_two_select').click(function() {
-		// hide options
-		$(this).slideUp();
 		
+	$('#step_two_select').click(function() {
+		//unlock step3
+		show_step_three();
+		unlock_step('#step_3');
+		
+		return false;
+		
+	});
+	
+	function show_step_three() {
+		$('#step_two_select').slideUp();
 		$('#step_three_select, .spec-op').show();
 		$('.facade-op:not(.selected)').slideUp();
 		$('#spec-selector').slideDown();
-		
-
-	});
+	}
 	
 	
 	// STEP 3 SPECIFICATIONS
+/*
 	$('#step_3').tapstart(function(e, touch) {
 		if ($(this).hasClass('lock')) {
-		 return false;
+			return false;
 		} else {
-			$('.selector').addClass('fade');
-			$('#spec-selector').removeClass('fade');
-			$(this).children('.touchme').remove();
-
+			show_step_four();
+			unlock_step('#step_4');
 		};
 	});
+*/
 	
 	$('.spec-op').tapstart(function(e, touch) {
 		
@@ -85,6 +83,10 @@ $(function() {
 		// update facade title
 		var title = $(this).attr('title');
 		$('#step_3 > .title').text(title);
+		
+		// change color
+		var src = $(this).attr('data-color');
+		changeColor(src);
 		
 		
 		$('.spec-op').slideDown(); //  show all spec
@@ -98,17 +100,29 @@ $(function() {
 	
 	
 	$('#step_three_select').click(function() {
-		// hide options
-		$(this).slideToggle();
-		$('.spec-op:not(.selected)').slideToggle();
-		$('#color-selector').slideToggle();
+	
+		// select color
+		var col = $('#spec-selector > .options > .selected').attr('data-col-class');
+		$('.col-op').hide();
+		$('.'+col).show();
+		
+		//unlock step4
+		show_step_four();
+		unlock_step('#step_4');
+		
+		return false;
 	});
 	
-	
+	function show_step_four() {
+		$('#step_three_select').slideUp();
+		$('.spec-op:not(.selected)').slideToggle();
+		$('#color-selector').slideToggle();
+	}
 	
 	
 	
 	// STEP 4 COLOUR
+/*
 	$('#step_4').tapstart(function(e, touch) {
 		if ($(this).hasClass('lock')) {
 		 return false;
@@ -117,6 +131,7 @@ $(function() {
 			$('#color-selector').removeClass('fade');
 		};
 	});
+*/
 	
 	$('.col-op').tapstart(function(e, touch) {
 		
@@ -147,6 +162,18 @@ $(function() {
 		return false;
 	});
 	
+	function changeColor(color) {
+		var src = "images/color/" + color + "/living.jpg";
+		
+		$('#content-image').prepend('<img src="'+src+'">');	
+		$('#content-image > img:not(:first)').fadeOut(1000, function() {
+			$(this).remove();
+		});	
+		
+		// highlight selected color
+		$('.col-op').removeClass('selected');
+		$('.col-op[data-color='+color+']').addClass('selected');
+	};
 	
 	
 	
@@ -159,7 +186,11 @@ $(function() {
 
 	});
 	
-
+	
+	function updateFacade(val) {
+		$('#step_2 > .title').text(val);
+	}
+	
 	function hideHUD() {
 		$('#hudT, #hudBC, #hudBR').toggleClass('hidden');
 	}
@@ -268,14 +299,12 @@ $(function() {
 		<span class="glyphicon check ease">&#57481;</span>
 		<span class="info">SPECIFICATIONS</span>
 		<span class="title">__</span>
-		<div id="touchme" class="glyphicon touchme">&#57641;</div>
 	</a>
 	
 	<a id="step_4" class="top-nav lock gradientTop" href="#">
 		<span class="glyphicon check ease">&#57481;</span>
 		<span class="info">COLOUR</span>
 		<span class="title">__</span>
-		<div id="touchme" class="glyphicon touchme">&#57641;</div>
 	</a>
 	
 	<a id="step_5" class="top-nav lock gradientTop last" href="#">
@@ -351,9 +380,9 @@ $(function() {
 		</div>
 		
 		<div class="options gradientTop">
-		<a class="spec-op" title="CLASSIC" href="#">Classic <span class="glyphicon">&#57377;</span></a>
-		<a class="spec-op" title="PREMIUM" href="#">Premium <span class="glyphicon">&#57377;</span></a>
-		<a class="spec-op selected" title="ELITE" href="#">Elite <span class="glyphicon">&#57377;</span></a>
+		<a class="spec-op" title="CLASSIC" 			data-col-class="col-class"	data-color="cream" 	href="#">Classic <span class="glyphicon">&#57377;</span></a>
+		<a class="spec-op" title="PREMIUM" 			data-col-class="col-prem"	data-color="fawn"    href="#">Premium <span class="glyphicon">&#57377;</span></a>
+		<a class="spec-op selected" title="ELITE" 	data-col-class="col-elite"	data-color="como"   href="#">Elite <span class="glyphicon">&#57377;</span></a>
 		</div>
 		
 		<a href="#" id="step_three_select" class="button">
@@ -368,16 +397,24 @@ $(function() {
 		</div>
 		
 		<div class="options gradientTop">
-		<a class="col-op selected"  title="COMO" 		  data-color="como"			href="#">Como <span class="glyphicon">&#57377;</span></a>
-		<a class="col-op" 			title="TAN" 		  data-color="tan"			href="#">Tan <span class="glyphicon">&#57377;</span></a>
-		<a class="col-op"			title="HAWKESBURN"    data-color="hawkesburn" 	href="#">Hawkesburn <span class="glyphicon">&#57377;</span></a>
-		<a class="col-op"			title="KOOYONG" 	  data-color="kooyong"		href="#">Kooyong <span class="glyphicon">&#57377;</span></a>
-		<a class="col-op"			title="GREYTHORN" 	  data-color="greythorn"	href="#">Greythorn <span class="glyphicon">&#57377;</span></a>
-		<a class="col-op"			title="LONSDALE" 	  data-color="lonsdale" 	href="#">Lonsdale <span class="glyphicon">&#57377;</span></a>
+		<a class="col-elite col-op selected" title="COMO" 		  data-color="como"			href="#">Como <span class="glyphicon">&#57377;</span></a>
+		<a class="col-elite col-op" 		 title="TAN" 		  data-color="tan"			href="#">Tan <span class="glyphicon">&#57377;</span></a>
+		<a class="col-elite col-op"			 title="HAWKESBURN"   data-color="hawkesburn" 	href="#">Hawkesburn <span class="glyphicon">&#57377;</span></a>
+		<a class="col-elite col-op"			 title="KOOYONG" 	  data-color="kooyong"		href="#">Kooyong <span class="glyphicon">&#57377;</span></a>
+		<a class="col-elite col-op"			 title="GREYTHORN" 	  data-color="greythorn"	href="#">Greythorn <span class="glyphicon">&#57377;</span></a>
+		<a class="col-elite col-op"			 title="LONSDALE" 	  data-color="lonsdale" 	href="#">Lonsdale <span class="glyphicon">&#57377;</span></a>
+
+		<a class="col-prem col-op"			 title="FAWN" 	  	  data-color="fawn"			href="#">Fawn <span class="glyphicon">&#57377;</span></a>		
+		<a class="col-prem col-op"   		 title="ASH" 		  data-color="ash"			href="#">Ash <span class="glyphicon">&#57377;</span></a>
+		<a class="col-prem col-op" 			 title="BLACKWOOD" 	  data-color="blackwood"	href="#">Blackwood <span class="glyphicon">&#57377;</span></a>
+		<a class="col-prem col-op"			 title="CHESTNUT"     data-color="chestnut" 	href="#">Chestnut <span class="glyphicon">&#57377;</span></a>
+		
+		<a class="col-class col-op" 		 title="CREAM" 		  data-color="cream"		href="#">Cream <span class="glyphicon">&#57377;</span></a>
+		<a class="col-class col-op" 		 title="RUBY" 		  data-color="ruby"			href="#">Ruby <span class="glyphicon">&#57377;</span></a>
 		</div>
 		
 		<a href="#" id="step_four_select" class="button">
-		next <span class="glyphicon" >&#57472;</span>
+		complete <span class="glyphicon" >&#57472;</span>
 		</a>
 		
 	</div>
