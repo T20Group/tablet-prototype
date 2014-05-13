@@ -172,7 +172,7 @@ $(function() {
 	
 	$('#btn-floorplan, #btn-floorplan-close').tapstart(function(e, touch) {
 		hideHUD();
-		$('#btn-floorplan-close, #content-floorplan, #btn-floorplan').toggleClass('fade');
+		$('#btn-floorplan-close, #content-floorplan, #btn-floorplan, #viewNav').toggleClass('fade');
 
 	});
 	
@@ -194,6 +194,53 @@ $(function() {
 	function show_selector() { 
 		
 	}
+	
+	$('#viewToggle').tapstart(function(e, touch) {
+		$('#hudT, #hudBL, #hudBR').toggleClass('hidden');
+	});
+	
+	
+	// NAV VIEW
+	$('#viewNav > a').click(function() {
+		
+		// view sort
+		var view = ["facade", "living", "kitchen", "bath"];
+		
+
+		
+		var action = $(this).attr('data-type');
+		var currView = $.inArray($('#loc-view').text(), view);
+		//alert(currView);
+		
+		
+		switch (action) {
+			case 'next':
+				currView++;
+				if (currView>=4) {
+					currView=0;
+				}
+				//alert(currView);
+			break;
+			
+			case 'prev':
+				currView--;
+				if (currView<=0) {
+					currView=3;
+				}
+				//alert(currView);
+			break;
+		}
+		
+		var locView = view[currView];
+		// update view
+		$('#loc-view').text(locView);
+		var col = $('#color-selector > .options > .selected').attr('data-color');
+		changeColor(col);
+		
+		return false;
+	});
+	
+	
 	
 	
 });
@@ -260,12 +307,26 @@ $(function() {
 
 .top { top: 2%; }
 .bot { bottom: 4%; }
-.left { left: 3%; }
+.left { left: 0; }
 .right { right: 0; }
 
 .cubic { transition: all .3s cubic-bezier(.5, 1.8, 1, 1.5); }
 
 /* .top-nav:hover > .glyphicon { transform:rotate(180deg); } */
+
+#nextBtn, #prevBtn { color: white; width: 70px; z-index: 9000; }
+#nextBtn { text-align: right; }
+
+#btn-floorplan { -moz-animation: hoverplan 3s infinite; position: absolute; left: 0px;  bottom: 50px; }
+
+@-moz-keyframes hoverplan {
+	0%   { margin-bottom: 10px; }
+	25%  { margin-bottom: 15px; margin-left: 3px; }
+	50%  { margin-bottom: 10px; }
+	75%  { margin-bottom: 15px; margin-right: 3px; }
+	100% { margin-bottom: 10px; }
+	}
+
 
 </style>
 
@@ -310,30 +371,47 @@ $(function() {
 
 <div id="hudBL" class="bot left" >
 	<a id="btn-floorplan" href="#" >
-		<img src="images/floorplan/plan_mini.png" height="280" />
+		<img src="images/floorplan/floorplan-3d-mini.png" width="240" style="opacity: .7; " />
 	</a>
+
+	<div id="viewNav" style="position: absolute; bottom: 3%; width: 200px; text-align: center;" class="button" >
+		<a id="prevBtn" data-type="prev" href="#">
+		<span class="glyphicon">&#57465;</span> 
+		</a>
+		&nbsp;&nbsp;&nbsp;
+		<span id="loc-view" style="display: inline-block; width: 80px; text-align: center; text-transform: capitalize;">facade</span>
+		&nbsp;&nbsp;&nbsp;
+		<a id="nextBtn" data-type="next" href="#">
+		<span class="glyphicon">&#57472;</span>
+		</a>
+	</div>
 </div><!-- /hud-bot-left -->
 
+
 <div id="hudBC" class="bot">	
+
 	<a href="#" class="menu">
+		<span class="glyphicon">&#57602;</span>
+		PROMO
+	</a>
+	
+	<a id="viewToggle" href="#" class="menu">
 		<span class="glyphicon">&#57605;</span>
 		VIEW
 	</a>
 	
+<!--
 	<a href="#" class="menu">
 		<span class="glyphicon">&#9993;</span>
 		SHARE
 	</a>
+-->
 	
 	<a href="#" class="menu">
 		<span class="glyphicon">&#57653;</span>
 		LANGUAGE
 	</a>
 	
-	<a href="#" class="menu">
-		<span class="glyphicon">&#57602;</span>
-		PROMO
-	</a>
 </div><!-- /hud-bot -->
 
 <div id="hudBR" class="bot right">
@@ -351,7 +429,7 @@ $(function() {
 		</div>
 		
 		<a href="#" id="step_two_select" class="button">
-		next <span class="glyphicon" >&#57472;</span>
+		select <span class="glyphicon" >&#57472;</span>
 		</a>
 		
 <!-- 		<a id="btn-facade" href="#">Facade selector <span class="glyphicon unlock ease">&#57480;</span></a> -->
@@ -371,7 +449,7 @@ $(function() {
 		</div>
 		
 		<a href="#" id="step_three_select" class="button">
-		next <span class="glyphicon" >&#57472;</span>
+		select <span class="glyphicon" >&#57472;</span>
 		</a>
 	</div>
 	
@@ -405,5 +483,4 @@ $(function() {
 	</div>
 
 </div> <!-- /hud-bot-right -->
-
 
