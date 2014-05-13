@@ -84,10 +84,11 @@ $(function() {
 		var title = $(this).attr('title');
 		$('#step_3 > .title').text(title);
 		
+		
 		// change color
 		var src = $(this).attr('data-color');
 		changeColor(src);
-		
+		$('#step_4 > .title').text(src);
 		
 		$('.spec-op').slideDown(); //  show all spec
 		// hide all other spec
@@ -135,23 +136,11 @@ $(function() {
 	
 	$('.col-op').tapstart(function(e, touch) {
 		
-		var src = "images/color/" + $(this).attr('data-color') + "/living.jpg";
+		var src = $(this).attr('data-color');
 		
 		// change facades
-		$('#content-image').prepend('<img src="'+src+'">');	
-		$('#content-image > img:not(:first)').fadeOut(1000, function() {
-			$(this).remove();
-		});
-		
-		// selected
-		$('.col-op').removeClass('selected');
-		$(this).addClass('selected');
-		
-/*
-		$('.selector').addClass('fade');
-		$('#color-selector').removeClass('fade');
-*/
-		
+		changeColor(src);
+
 		// update facade title
 		var title = $(this).attr('title');
 		$('#step_4 > .title').text(title);
@@ -163,7 +152,8 @@ $(function() {
 	});
 	
 	function changeColor(color) {
-		var src = "images/color/" + color + "/living.jpg";
+		var view = $('#loc-view').text();
+		var src = "images/color/" + color + "/"+view+".jpg";
 		
 		$('#content-image').prepend('<img src="'+src+'">');	
 		$('#content-image > img:not(:first)').fadeOut(1000, function() {
@@ -218,7 +208,7 @@ $(function() {
 	.top-nav > .glyphicon, .top-nav > .info, .top-nav > .title, .top-nav > .check { position: absolute; }
 	.top-nav > .check { left: 20px; top: 15px; font-size: 32px; }
 	.top-nav > .info { left: 60px; top: 10px; font-size: 12pt; font-weight: 100; }
-	.top-nav > .title { left: 60px; top: 30px; font-weight: 500; }
+	.top-nav > .title { left: 60px; top: 30px; font-weight: 500; text-transform: uppercase; }
 	.top-nav > .touchme { top: 60px; left: 130px; font-size: 30px; transform: rotate(-45deg); -moz-animation: bounce 1.8s infinite; border-radius:2px; height:1px; width: 1px; opacity: 0.1; }
 	
 #hudT > a.lock > .touchme { opacity: 0 !important; }
