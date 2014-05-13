@@ -201,7 +201,7 @@ $(function() {
 	
 	
 	// NAV VIEW
-	$('#viewNav > a').click(function() {
+	$('#viewNav > a').tapstart(function(e, touch) {
 		
 		// view sort
 		var view = ["facade", "living", "kitchen", "bath"];
