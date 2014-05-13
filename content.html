@@ -1,7 +1,7 @@
 <script type="text/javascript">
 $(function() {
 	
-	$('#content-floorplan a').click(function() {
+	$('#content-floorplan a').tapstart(function(e, touch) {
 
 	});
 	
@@ -14,12 +14,12 @@ $(function() {
 	
 	// FLOORPLAN FUNCTIONS
 	
-	$('.floorplan-tag').click(function() {
+	$('.floorplan-tag').tapstart(function(e, touch) {
 		
 		var src = $(this).attr('data-view');
 		
 		// set view
-		$('#update').text(src);
+
 		//alert(src);
 		
 		// hide floorplan
