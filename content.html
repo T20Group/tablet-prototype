@@ -46,6 +46,14 @@ $(function() {
 		$('#loc-view').text(view);
 	}
 	
+	
+	$('#promo-close').click(function() {
+		$('#content-promo').toggleClass('show-cont');
+		$('#hudT, #hudBR, #hudBL').toggleClass('hidden');
+				
+		return false;
+	});
+	
 });
 </script>
 
@@ -75,6 +83,20 @@ $(function() {
 	100% { margin-top: 10px; }
 	}
 
+
+#content-promo { position: absolute; background: rgba(0, 0, 0, 0.7); width: 900px; z-index: 9000; left: 2%; bottom: -900px; opacity: 0; text-align: left; padding: 30px; margin: 10px; }
+#content-promo h1 { font-size: 30px; border-bottom: 1px solid #fff; font-weight: lighter; margin-bottom: 20px; padding-bottom: 10px; color: white; }
+.show-cont { opacity: 1 !important; bottom: 100px !important; }
+#content-promo .arrow {
+	border-left: 15px solid transparent;
+	border-right: 15px solid transparent;
+	border-top: 15px solid rgba(0, 0, 0, .7);
+	bottom:-15px;
+	left:392px;
+	position: absolute;
+	width: 0; 
+	height: 0; 
+}
 </style>
 
 
@@ -108,4 +130,20 @@ $(function() {
 	
 	</div>
 	
+</div>
+
+<div id="content-promo" class="ease">
+	<h1>Our Latest Promotions</h1>
+	<div style="text-align: center;">
+	<img src="images/promos/vid.jpg" alt="vid" width="666" height="374" />
+	<br/><br/>
+	<img src="images/promos/depositbuilder.jpg" alt="depositbuilder" width="280" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<img src="images/promos/getoutfast.jpg" alt="getoutfast" width="280" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<img src="images/promos/mysimonds.jpg" alt="mysimonds" width="280" />
+	</div>
+	<div class="arrow"></div>
+	
+	<a id="promo-close" class="close-btn ease" href="#" style=" position: absolute; right: -20px; top: -20px;">
+		<span class="glyphicon ease" style="color: white;">&#57480;</span> 
+	</a>
 </div>

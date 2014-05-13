@@ -196,7 +196,7 @@ $(function() {
 	}
 	
 	$('#viewToggle').tapstart(function(e, touch) {
-		$('#hudT, #hudBL, #hudBR').toggleClass('hidden');
+		$('#hudT, #hudBR').toggleClass('hidden');
 	});
 	
 	
@@ -205,8 +205,6 @@ $(function() {
 		
 		// view sort
 		var view = ["facade", "living", "kitchen", "bath"];
-		
-
 		
 		var action = $(this).attr('data-type');
 		var currView = $.inArray($('#loc-view').text(), view);
@@ -241,6 +239,15 @@ $(function() {
 	});
 	
 	
+	// PROMOTION 
+	$('#promoToggle').click(function() {
+		$('#content-promo').toggleClass('show-cont');
+		$('#hudT, #hudBR, #hudBL').toggleClass('hidden');
+		
+		return false;
+	});
+	
+
 	
 	
 });
@@ -314,7 +321,7 @@ $(function() {
 
 /* .top-nav:hover > .glyphicon { transform:rotate(180deg); } */
 
-#nextBtn, #prevBtn { color: white; width: 70px; z-index: 9000; }
+#nextBtn, #prevBtn { color: white; width: 70px; font-size: 20pt; }
 #nextBtn { text-align: right; }
 
 #btn-floorplan { -moz-animation: hoverplan 3s infinite; position: absolute; left: 0px;  bottom: 50px; }
@@ -359,7 +366,7 @@ $(function() {
 	<a id="step_5" class="top-nav lock gradientTop last" href="#">
 		<span class="glyphicon check">&#57481;</span>
 		<span class="info">COMPLETE</span>
-		<span class="title">__</span>
+		<span class="title">SHARE</span>
 		<div id="touchme" class="glyphicon touchme">&#57641;</div>
 	</a>
 	
@@ -390,7 +397,7 @@ $(function() {
 
 <div id="hudBC" class="bot">	
 
-	<a href="#" class="menu">
+	<a id="promoToggle" href="#" class="menu">
 		<span class="glyphicon">&#57602;</span>
 		PROMO
 	</a>
