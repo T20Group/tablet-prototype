@@ -110,8 +110,16 @@ $(function() {
 		inc('#hud-container', 'includes/hud.html');
 		inc('#share-cont-div', 'includes/share-cont.html');
 		inc('#content', 'content.html');
+		
+		$('#intro').click(function() {
+			$(this).hide();
+		})
     });
 	</script>
+	
+	<div id="intro" style="z-index: 9001; position: fixed;">
+	<img src="images/intro.jpg" alt="intro" width="1024" height="768">
+	</div>
 	
 	<div id="hud-container"   style="z-index: 9000; background: ; position: absolute; height: 768px; width: 1024px; "></div>
 	<div id="share-cont-div"  style="z-index: 9000; position: absolute; height: 768px; width: 1024px; background: rgba(0, 0, 0, 0.3); display: none;"></div>

@@ -257,7 +257,7 @@ $(function() {
 	$('#promoToggle').tapstart(function(e, touch) {
 		$('#content-promo').toggleClass('show-cont');
 		$('#hudT, #hudBR, #hudBL').toggleClass('hidden');
-		
+		$('.spec-dot').removeClass('living bath kitchen facade').addClass('facade');
 		return false;
 	});
 	
@@ -278,7 +278,8 @@ $(function() {
 	
 	// RELOAD PAGE
 	$('#reloadPage').click(function() {
-	    location.reload();
+	    //location.reload();
+	    $('#intro').show();
 	});
 	
 });
@@ -447,7 +448,7 @@ $(function() {
 	
 	<a id="reloadPage" href="#" class="menu">
 		<span class="glyphicon">&#57653;</span>
-		LANGUAGE
+		DAVE
 	</a>
 	
 </div><!-- /hud-bot -->
