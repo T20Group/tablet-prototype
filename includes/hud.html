@@ -269,6 +269,7 @@ $(function() {
 		 return false;
 		} else {
 			$('#share-cont-div').fadeIn();
+			
 			// hide dots
 			$('.spec-dot').removeClass('living bath kitchen facade').addClass('facade');
 		};
@@ -279,7 +280,7 @@ $(function() {
 	
 	
 	// RELOAD PAGE
-	$('#reloadPage').click(function() {
+	$('#reloadPage').tapstart(function(e, touch {
 	    //location.reload();
 	    $('#intro').show();
 	});

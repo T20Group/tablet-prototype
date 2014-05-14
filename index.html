@@ -111,7 +111,7 @@ $(function() {
 		inc('#share-cont-div', 'includes/share-cont.html');
 		inc('#content', 'content.html');
 		
-		$('#intro').click(function() {
+		$('#intro').tapstart(function(e, touch) {
 			$(this).hide();
 		})
     });
