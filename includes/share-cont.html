@@ -1,0 +1,134 @@
+<style type="text/css">
+input[type=checkbox] {
+	visibility: hidden;
+}
+input[type=email] {
+   border-radius: 4px;
+    display: block;
+    font-size: 14px;
+    margin: 15px 0;
+    padding: 10px 0;
+    text-align: center;
+    width: 100%;
+}
+
+.share-cont .email-form button {
+    font-size: 14px;
+    height: 40px;
+    padding: 5px;
+    width: 120px;
+}
+
+.squaredTwo {
+	width: 28px;
+	height: 28px;
+	background: #fcfff4;
+
+	background: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+	background: -moz-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+	background: -o-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+	background: -ms-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+	background: linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfff4', endColorstr='#b3bead',GradientType=0 );
+	margin-left:260px;
+	top:-25px;
+
+	-webkit-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+	-moz-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+	box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+	position: relative;
+	
+	display: inline-block;
+}
+
+.squaredTwo label {
+	cursor: pointer;
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	left: 4px;
+	top: 4px;
+
+	-webkit-box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,1);
+	-moz-box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,1);
+	box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,1);
+
+	background: -webkit-linear-gradient(top, #222 0%, #45484d 100%);
+	background: -moz-linear-gradient(top, #222 0%, #45484d 100%);
+	background: -o-linear-gradient(top, #222 0%, #45484d 100%);
+	background: -ms-linear-gradient(top, #222 0%, #45484d 100%);
+	background: linear-gradient(top, #222 0%, #45484d 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#222', endColorstr='#45484d',GradientType=0 );
+}
+
+.squaredTwo label:after {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	filter: alpha(opacity=0);
+	opacity: 0;
+	content: '';
+	position: absolute;
+	width: 9px;
+	height: 5px;
+	background: transparent;
+	top: 4px;
+	left: 4px;
+	border: 3px solid #fcfff4;
+	border-top: none;
+	border-right: none;
+
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+
+.squaredTwo label:hover::after {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+	filter: alpha(opacity=30);
+	opacity: 0.3;
+}
+
+.squaredTwo input[type=checkbox]:checked + label:after {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	filter: alpha(opacity=100);
+	opacity: 1;
+}
+
+.share-cont { padding: 30px; width: 400px; margin: 20% auto;  background: rgba(0, 0, 0, 0.7); color: white; font-size: 14pt; text-align: center; line-height: 1.2; position: relative; 
+}
+.share-cont h1 { font-size: 20pt; font-weight: lighter; padding-bottom: 10px; margin-bottom: 15px; border-bottom: 1px solid white;  }
+
+.b-close { position: absolute; top: -20px; right: -20px; color: white; font-size: 50px;}
+</style>
+
+<script type="text/javascript">
+$(function() {
+	$('.b-close').click(function() {
+		$('#share-cont-div').fadeOut();
+	});
+});
+</script>
+
+<div class="share-wrapper">
+<a class="b_share" href="#" style="width:100%; height:100%; position:absolute;"></a>
+	<div class="share-cont">
+		<a class="b-close" href="#"><span class="glyphicon">&#57480;</span></a>
+		<h1>Share this home</h1>
+        <div class="desc">Fill in your email and a brochure of this home will be sent instantly</div>
+        <div class="email-form">
+        	<form>
+                <!--<label for="name">Name:</label> <input type="text" name="name" />
+                <label for="email">Email:</label> --><input type="email" name="email" required="required" placeholder="Enter your email" />  
+                <div class="checkbox-div">
+                	<div class="checkbox-text">Join the Simonds VIP List</div>
+                	<div class="squaredTwo">
+                        <input type="checkbox" value="None" id="squaredTwo" name="check" />
+                        <label for="squaredTwo"></label>
+                	</div>
+                </div>
+                <button type="button">Send</button>
+            </form>
+        </div>
+	</div>
+</div>
