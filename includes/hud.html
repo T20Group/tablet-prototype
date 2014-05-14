@@ -41,6 +41,8 @@ $(function() {
 		$('#step_two_select').slideDown();
 
 		
+		// remove all dots
+		$('.spec-dot').removeClass('living bath kitchen').addClass('facade');
 		
 		return false;
 	});
@@ -95,6 +97,10 @@ $(function() {
 		//$('.options a:not(.spec-op, .selected)').slideUp();
 		$('#color-selector').slideUp();
 		$('#step_three_select').slideDown();
+		
+		// show dots
+		var view = $('#loc-view').text();
+		$('.spec-dot').removeClass('living bath kitchen facade').addClass(view);
 		
 		return false;
 	});
@@ -177,6 +183,9 @@ $(function() {
 	$('#btn-floorplan, #btn-floorplan-close').tapstart(function(e, touch) {
 		hideHUD();
 		$('#btn-floorplan-close, #content-floorplan, #btn-floorplan, #viewNav').toggleClass('fade');
+		
+		// hide all spec dots
+		$('.spec-dot').removeClass('living bath kitchen').addClass('facade');
 
 	});
 	
@@ -226,7 +235,7 @@ $(function() {
 			
 			case 'prev':
 				currView--;
-				if (currView<=0) {
+				if (currView<0) {
 					currView=3;
 				}
 				//alert(currView);
@@ -236,6 +245,7 @@ $(function() {
 		var locView = view[currView];
 		// update view
 		$('#loc-view').text(locView);
+		$('.spec-dot').removeClass('living bath kitchen facade').addClass(locView);
 		var col = $('#color-selector > .options > .selected').attr('data-color');
 		changeColor(col);
 		
@@ -261,7 +271,7 @@ $(function() {
 			$('#share-cont-div').fadeIn();
 		};
 		
-		return false;
+
 
 	});
 	

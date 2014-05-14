@@ -44,6 +44,9 @@ $(function() {
 		
 		// update loc-view
 		$('#loc-view').text(view);
+		
+		// move spec dots
+		$('.spec-dot').removeClass('living bath kitchen facade').addClass(view);
 	}
 	
 	
@@ -54,6 +57,35 @@ $(function() {
 		return false;
 	});
 	
+/*
+	$('#specA').click(function() {
+		$('.spec-dot').removeClass('living bath kitchen facade').addClass('bath');
+	});
+	
+	$('#specB').click(function() {
+		$('.spec-dot').removeClass('living bath kitchen facade').addClass('kitchen');
+	});
+	
+	$('#specC').click(function() {
+		$('.spec-dot').removeClass('living bath kitchen facade').addClass('living');
+	});
+	
+	$('#specD').click(function() {
+		$('.spec-dot').removeClass('living bath kitchen facade').addClass('facade');
+	});
+*/
+	$('.spec-dot').click(function() {
+		$('#spec-container').show();
+		$('.spec-dot').removeClass('living bath kitchen facade').addClass('facade');
+		$('#hudT, #hudBR, #hudBL, #hudBC').toggleClass('hidden');
+	});
+	
+	$('#spec-close').click(function() {
+		$('#spec-container').hide();
+		var view = $('#loc-view').text();
+		$('.spec-dot').removeClass('living bath kitchen facade').addClass(view);
+		$('#hudT, #hudBR, #hudBL, #hudBC').toggleClass('hidden');
+	});
 });
 </script>
 
@@ -97,12 +129,40 @@ $(function() {
 	width: 0; 
 	height: 0; 
 }
+
+
+/* SPECS */
+#spec-container { position: absolute; background: rgba(0, 0, 0, 0.7); width: 900px; z-index: 9000; left: 2%; text-align: left; padding: 30px; margin: 40px 10px 0; }
+#spec-container h1 { font-size: 30px; border-bottom: 1px solid #fff; font-weight: lighter; margin-bottom: 20px; padding-bottom: 10px; color: white; }
+
+
+.spec-dot { position: absolute; font-size: 30px; opacity: .5; z-index: 9000; } /* -moz-animation: hover 3s infinite; */ 
+#specA.living { top: 220px; left: 500px; }
+#specB.living { top: 450px; left: 200px; }
+#specC.living { top: 520px; left: 700px; }
+#specD.living { top: 250px; left: 770px; }
+
+#specA.bath { top: 620px; left: 480px; }
+#specB.bath { top: 360px; left: 820px; }
+#specC.bath { top: 350px; left: 500px; }
+#specD.bath { top: 520px; left: 260px; }
+
+#specA.kitchen { top: 420px; left: 400px; }
+#specB.kitchen { top: 250px; left: 570px; }
+#specC.kitchen { top: 420px; left: 600px; }
+#specD.kitchen { top: 600px; left: 750px; }
+
+#specA.facade { top: -100px; left: -100px; opacity: 0; display: none; }
+#specB.facade { top:  850px; left: 1200px; opacity: 0; display: none; }
+#specC.facade { top:  850px; left: -100px; opacity: 0; display: none; }
+#specD.facade { top: -100px; left: 1200px; opacity: 0; display: none; }
 </style>
 
 
 
 <div id="content-image" style="background: rgba(0, 0, 0, 0.7); width: 100%; height: 100%; ">
-<img src="images/facades/penfold.jpg" alt="01" width="1024" height="768" />
+<img src="images/facades/penfold.jpg" width="1024" height="768" />
+<!-- <img src="images/color/ash/bath.jpg" width="1024" height="768" /> -->
 </div>
 
 <div id="content-floorplan" class="ease fade" style="background: rgba(255, 255, 255, 0.7); position: absolute; top: 0; left: 0; z-index: 9000; ">
@@ -146,4 +206,32 @@ $(function() {
 	<a id="promo-close" class="close-btn ease" href="#" style=" position: absolute; right: -20px; top: -20px;">
 		<span class="glyphicon ease" style="color: white;">&#57480;</span> 
 	</a>
+</div>
+
+<div id="content-spec" style="width: 1024px; height: 768px; position: absolute; left: 0; top: 0; background: rgba(0, 0, 0, 0.2);">
+	<a id="specA" class="spec-dot ease facade" href="#"><span class="glyphicon" style="color: white;">&#57473;</span></a>
+	<a id="specB" class="spec-dot ease facade" href="#"><span class="glyphicon" style="color: white;">&#57473;</span></a>
+	<a id="specC" class="spec-dot ease facade" href="#"><span class="glyphicon" style="color: white;">&#57473;</span></a>
+	<a id="specD" class="spec-dot ease facade" href="#"><span class="glyphicon" style="color: white;">&#57473;</span></a>
+<!--
+	<div id="spec-container" style="width: 800px; height: 500px; margin: 10% auto; background: rgba(0, 0, 0, 0.5); padding: 30px; display: none;">
+	</div>
+-->
+	
+	<div id="spec-container" class="ease" style="display: none;">
+	<h1>Specifications</h1>
+	
+	<img src="images/dummy-spec.png" alt="dummy-spec" width="800" />
+	
+	<h1>Extra upgrades</h1>
+	<div style="text-align: center;">
+	<img src="images/promos/depositbuilder.jpg" alt="depositbuilder" width="280" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<img src="images/promos/getoutfast.jpg" alt="getoutfast" width="280" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<img src="images/promos/mysimonds.jpg" alt="mysimonds" width="280" />
+	</div>
+	
+	<a id="spec-close" class="close-btn ease" href="#" style=" position: absolute; right: -20px; top: -20px;">
+		<span class="glyphicon ease" style="color: white;">&#57480;</span> 
+	</a>
+</div>
 </div>
