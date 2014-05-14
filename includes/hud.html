@@ -283,6 +283,12 @@ $(function() {
 	$('#reloadPage').tapstart(function(e, touch) {
 	    //location.reload();
 	    $('#intro').show();
+	    
+	    // resets
+	    $('#step_3, #step_4, #step_5').addClass('lock');
+	    $('.facade-op').slideDown();
+		$('#spec-selector, #color-selector').slideUp();
+		$('#step_two_select').slideDown();
 	});
 	
 });
@@ -450,8 +456,8 @@ $(function() {
 -->
 	
 	<a id="reloadPage" href="#" class="menu">
-		<span class="glyphicon">&#57653;</span>
-		DAVE
+		<span class="glyphicon">&#57393;</span>
+		REFRESH
 	</a>
 	
 </div><!-- /hud-bot -->
