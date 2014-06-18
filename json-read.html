@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script src="js/jquery-1.8.2.min.js" type="text/javascript"></script>
 
 <title>Read JSON</title>
 </head>
@@ -10,48 +10,34 @@
 
 <script type="text/javascript">
 $(function() {
-
-//alert('ok');	
-
-
-$.ajax({
-    dataType: "json",
-    url: "http://www.t20group.com.au/staging/JSON/json.php",
-    success: function(json){
-        //here inside json variable you've the json returned by your PHP
-        for(var i=0;i<json.length;i++){
-       
-            $('#items_container').append( json[i].id + " " + json[i].email + "<br/>" )
-           
-        }
+	
+/*
+	$.get("http://www.t20group.com.au/staging/JSON/json.php", {}, function(content){
+	   $("#otherWeb").html(content)
+	}, "json");
+*/
+	
+	var url =  "http://www.t20group.com.au/staging/JSON/json.php";
+    $.getJSON(url, function(data) {
         
-    }
-});
+        var items = [];
+		$.each( data, function( key, val ) {
+			items.push( "<li id='" + key + "'>" + val.email + ": <b>" + val.subject + "</b>, " + val.ip + "<br/><br/></li>" );
+		});
+		
+		$( "<ul/>", { 
+			"class": "my-new-list", html: items.join( "" ) 
+			}).appendTo( "#items_containerB" );
 
-
-// type 2
-$.getJSON( "http://www.t20group.com.au/staging/JSON/json.php", function( data ) {
-	var items = [];
-	$.each( data, function( key, val ) {
-		items.push( "<li id='" + key + "'>" + val.email + "</li>" );
-	});
-	
-	$( "<ul/>", { 
-		"class": "my-new-list", html: items.join( "" ) 
-		}).appendTo( "#items_containerB" );
-});
-
-
-	
+    }).error(function(jqXhr, textStatus, error) {
+                alert("ERROR: " + textStatus + ", " + error);
+    });
 });
 </script>
 
-<div id="items_container">
-</div>
-
-
 <div id="items_containerB">
 </div>
+
 
 </body>
 </html>
