@@ -192,10 +192,32 @@ $(function() {
 	
 </div>
 
+
+
+<script>
+$(function() {
+
+	$("#vid_tinkering").tapstart(function(e, touch) {
+		var myVideo=$("#vid_tinkering");
+		if (myVideo.paused)  {
+		  myVideo.play();
+		} else { 
+		  myVideo.pause(); 
+		}
+		$("#vid_tinkering").toggleClass( "full-video" );
+		$('.nav-bottom').toggleClass('hidden');
+	});
+});		
+</script>
+
+
 <div id="content-promo" class="ease">
 	<h1>Our Latest Promotions</h1>
 	<div style="text-align: center;">
-	<img src="images/promos/vid.jpg" alt="vid" width="666" height="374" />
+<!-- 	<img src="images/promos/vid.jpg" alt="vid" width="666" height="374" /> -->
+	<video id="vid_tinkering" poster="images/promos/vid.jpg">
+		<source src="video/tinkering.webm" type="video/webm">
+	</video>
 	<br/><br/>
 	<img src="images/promos/depositbuilder.jpg" alt="depositbuilder" width="280" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<img src="images/promos/getoutfast.jpg" alt="getoutfast" width="280" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
