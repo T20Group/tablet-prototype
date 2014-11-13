@@ -105,6 +105,8 @@ input[type=email] {
 <script type="text/javascript">
 $(function() {
 	$('.b-close').click(function() {
+		$('#shareForm').show();
+		$('#shareResult').hide();
 		$('#share-cont-div').fadeOut();
 	});
 	
@@ -127,7 +129,7 @@ $(function() {
 		$.ajax({
 				url: "http://www.t20group.com.au/staging/SIM/SIM_DAVE_EMAIL/email.php",
 				type: "POST",
-				data: { n : target, from: "DAVELIVE" },
+				data: { n : target, from: "Tablet" },
 				dataType: 'HTML',
 				success: function(result) {
 					//alert(data);
@@ -149,7 +151,7 @@ $(function() {
 	        <div class="email-form">
 	        	<form>
 	                <!--<label for="name">Name:</label> <input type="text" name="name" />
-	                <label for="email">Email:</label> --><input type="email" name="email" required="required" placeholder="Enter your email" value="honshio@t20group.com.au" />  
+	                <label for="email">Email:</label> --><input id="shareInput" type="email" name="email" required="required" placeholder="Enter your email" value="honshio@t20group.com.au" />  
 	                <div class="checkbox-div">
 	                	<div class="checkbox-text">Join the Simonds VIP List</div>
 	                	<div class="squaredTwo">
@@ -161,7 +163,7 @@ $(function() {
 	            </form>
 	        </div>
 		</div> <!-- /shareForm -->
-		<div id="shareResult">
+		<div id="shareResult" class="hidden">
 			<div class="desc">Brochure successfully sent to</div>
 			<h1>email@address.com</h1>
 		</div> <!-- /shareResult -->
